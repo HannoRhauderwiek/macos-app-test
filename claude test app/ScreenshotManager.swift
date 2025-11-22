@@ -8,12 +8,14 @@
 import Foundation
 import AppKit
 import ScreenCaptureKit
+import Observation
 
+@Observable
 @MainActor
-class ScreenshotManager: ObservableObject {
-    @Published var capturedImage: NSImage?
-    @Published var isCapturing = false
-    @Published var errorMessage: String?
+final class ScreenshotManager {
+    var capturedImage: NSImage?
+    var isCapturing = false
+    var errorMessage: String?
 
     /// Nimmt einen Screenshot des gesamten Bildschirms auf
     func captureScreen() async {

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var screenshotManager = ScreenshotManager()
+    @State private var screenshotManager = ScreenshotManager()
     @State private var imageTitle = ""
     @State private var showingSaveSuccess = false
     @State private var showingError = false
