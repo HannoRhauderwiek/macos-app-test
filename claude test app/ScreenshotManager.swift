@@ -8,16 +8,16 @@
 import Foundation
 import AppKit
 import ScreenCaptureKit
-import Observation
+import SwiftUI
+import Combine
 
-@Observable
-@MainActor
-final class ScreenshotManager {
-    var capturedImage: NSImage?
-    var isCapturing = false
-    var errorMessage: String?
+class ScreenshotManager: ObservableObject {
+    @MainActor @Published var capturedImage: NSImage?
+    @MainActor @Published var isCapturing = false
+    @MainActor @Published var errorMessage: String?
 
     /// Nimmt einen Screenshot des gesamten Bildschirms auf
+    @MainActor
     func captureScreen() async {
         isCapturing = true
         errorMessage = nil
@@ -60,6 +60,7 @@ final class ScreenshotManager {
     }
 
     /// Alternative Screenshot-Methode mit screencapture Kommandozeilen-Tool
+    @MainActor
     func captureScreenLegacy() {
         isCapturing = true
         errorMessage = nil
@@ -91,6 +92,7 @@ final class ScreenshotManager {
     }
 
     /// Löscht das aktuelle Bild
+    @MainActor
     func clearImage() {
         capturedImage = nil
         errorMessage = nil
